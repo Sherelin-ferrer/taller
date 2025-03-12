@@ -1,16 +1,33 @@
-import Store from "./../Models/Store.js";
+import Store from "../../models/Store.js";
 
-let allStores = async (req, res, next) => {
+//  Obtener todas las tiendas
+const getAllStores = async (req, res) => {
     try {
-        let all = await Store.find();
-        return res.status(200).json({
-            response: all
-        });
+        const stores = await Store.find();
+        res.status(200).json(stores);
     } catch (error) {
-        return res.status(500).json({
-            response: error.message
-        });
+        res.status(500).json( error);
     }
 };
 
-export default allStores;
+//  Obtener una tienda por dirección
+const getStoreByAddress = async (req, res) => {
+    try {
+        const store = await Store.findOne({ address: req.params.address });
+        store ? res.status(200).json(store) : res.status(404).json({ message: "Store not found" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+//  Obtener una tienda por nombre
+const getStoreByName = async (req, res) => {
+    try {
+        const store = await Store.findOne({ name: req.params.name });
+        store ? res.status(200).json(store) : res.status(404).json({ message: "Store not found" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export { getAllStores, getStoreByAddress, getStoreByName };
