@@ -1,16 +1,33 @@
-import Product from "./../Models/Product.js";
+import Product from "../../models/Product.js";
 
-let allProducts = async (req, res, next) => {
+// Obtener todos los productos
+const AllProducts = async (req, res) => {
     try {
-        let all = await Product.find();
-        return res.status(200).json({
-            response: all
-        });
+        const products = await Product.find();
+        res.status(200).json(products);
     } catch (error) {
-        return res.status(500).json({
-            response: error.message
-        });
+        res.status(500).json({ error: error.message });
     }
 };
 
-export default allProducts;
+// Obtener productos por tipo
+const ProductByType = async (req, res) => {
+    try {
+        const products = await Product.find({ type: req.params.type });
+        products.length ? res.status(200).json(products) : res.status(404).json({ message: "No products found" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Obtener productos por marca
+const ProductByBrand = async (req, res) => {
+    try {
+        const products = await Product.find({ brand: req.params.brand });
+        products.length ? res.status(200).json(products) : res.status(404).json({ message: "No products found" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export { AllProducts, ProductByType, ProductByBrand };
