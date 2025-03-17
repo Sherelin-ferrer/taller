@@ -6,7 +6,7 @@ const AllStores = async (req, res) => {
         const stores = await Store.find();
         res.status(200).json(stores);
     } catch (error) {
-        res.status(500).json( error);
+        next (error)
     }
 };
 
@@ -16,7 +16,7 @@ const StoreByAddress = async (req, res) => {
         const store = await Store.findOne({ address: req.params.address });
         store ? res.status(200).json(store) : res.status(404).json({ message: "Store not found" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next (error)
     }
 };
 
@@ -26,7 +26,7 @@ const StoreByName = async (req, res) => {
         const store = await Store.findOne({ name: req.params.name });
         store ? res.status(200).json(store) : res.status(404).json({ message: "Store not found" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next (error)
     }
 };
 

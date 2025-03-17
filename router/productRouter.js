@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AllProducts, ProductByType, ProductByBrand } from "../controllers/product/read.js";
 import createProduct from "../controllers/product/create.js";
+import createManyProduct from "../controllers/product/createMany.js";
 
 const routerProducts = Router();
 
@@ -14,5 +15,8 @@ routerProducts.get("/productByType/:type", ProductByType);
 routerProducts.get("/productByBrand/:brand", ProductByBrand);
 
 routerProducts.post("/productCreate", createProduct)
+
+// Crear múltiples tiendas con insertMany
+routerProducts.post("/productCreateMany", createManyProduct);
 
 export default routerProducts;

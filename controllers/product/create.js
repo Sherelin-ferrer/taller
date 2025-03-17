@@ -9,10 +9,7 @@ let createProduct = async (req, res) => {
             response: newProduct
         });
     } catch (error) {
-        return res.status(500).json({
-            message: "Error al crear el producto",
-            error: error.message
-        });
+     next (error)
     }
 };
 export default createProduct

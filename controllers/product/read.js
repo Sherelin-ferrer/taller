@@ -6,7 +6,7 @@ const AllProducts = async (req, res) => {
         const products = await Product.find();
         res.status(200).json(products);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next (error)
     }
 };
 
@@ -16,7 +16,7 @@ const ProductByType = async (req, res) => {
         const products = await Product.find({ type: req.params.type });
         products.length ? res.status(200).json(products) : res.status(404).json({ message: "No products found" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next (error)
     }
 };
 
@@ -26,7 +26,7 @@ const ProductByBrand = async (req, res) => {
         const products = await Product.find({ brand: req.params.brand });
         products.length ? res.status(200).json(products) : res.status(404).json({ message: "No products found" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        next (error)
     }
 };
 

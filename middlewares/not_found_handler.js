@@ -1,4 +1,4 @@
-/* const not_found_handler = (req,res,next)=>{
+ const not_found_handler = (req,res,next)=>{
 return res.status(404).json({
     succes: false,
     message:  `la peticion con el metodo ${req.method} con la ruta ${req.url} no fue encontrada `
@@ -6,4 +6,3 @@ return res.status(404).json({
 })
 }
 export default not_found_handler
-*/

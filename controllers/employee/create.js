@@ -9,10 +9,7 @@ let createEmployee = async (req, res) => {
             response: newEmployee
         });
     } catch (error) {
-        return res.status(500).json({
-            message: "Error al crear el empleado",
-            error: error.message
-        });
+       next (error)
     }
 };
 
