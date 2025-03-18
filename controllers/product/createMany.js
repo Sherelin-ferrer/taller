@@ -1,6 +1,6 @@
 import Product from "../../models/Product.js"; 
 
-const createManyProduct = async (req, res) => {
+const createManyProduct = async (req, res, next) => {
     try {
         const products = req.body; // Recibe un array de productos desde el body
         
@@ -18,8 +18,7 @@ const createManyProduct = async (req, res) => {
             data: newProducts
         });
     } catch (error) {
-        console.log("Error al crear products", error);
-        res.status(500).json({ message: "Error al crear productos", error: error.message });
+    next(error)
     }
 };
 

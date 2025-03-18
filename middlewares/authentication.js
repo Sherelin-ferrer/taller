@@ -1,6 +1,6 @@
 // Middleware de autenticación para rutas específicas
 
-const authentication = (req, res, next) => {
+ const authentication = (req, res, next) => {
     let protectedRoutes = ["/store", "/product", "/employee"];
     if (protectedRoutes.includes(req.path)) {
         let authHeader = req.headers.authorization;
@@ -11,3 +11,4 @@ const authentication = (req, res, next) => {
     next();
 };
  export default authentication
+ 

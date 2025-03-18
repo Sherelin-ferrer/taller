@@ -2,7 +2,7 @@ import "dotenv/config.js";
 import "../../config/database.js";
 import Product from "../Product.js";
 
-let products = [];
+let Products = [];
 
 const brands = ["TechCorp", "MobileOne", "Sporty", "ComfySit", "BrewMaster"];
 const types = ["Electronics", "Appliances", "Footwear", "Furniture", "Clothing"];
@@ -20,4 +20,4 @@ for (let i = 1; i <= 100; i++) {
     });
 }
 
-Product.insertMany(products).then(() => console.log("Products inserted!"));
+Product.insertMany(Products).then(() => console.log("Products inserted!"));

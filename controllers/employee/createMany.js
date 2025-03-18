@@ -1,6 +1,6 @@
 import Employee from "../../models/Employee.js"; 
 
-const createManyEmployees = async (req, res) => {
+const createManyEmployees = async (req, res, next) => {
     try {
         const employees = req.body; // Recibe un array de empleados desde el body
         const newEmployees = await Employee.insertMany(employees); 
@@ -10,7 +10,7 @@ const createManyEmployees = async (req, res) => {
             data: newEmployees
         });
     } catch (error) {
-        res.status(500).json({ message: "Error al crear empleados", error });
+        next (error)
     }
 };
 

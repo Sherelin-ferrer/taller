@@ -1,7 +1,7 @@
 import Employee from "../../models/Employee.js";
 
 // Obtener todos los empleados
-const AllEmployees = async (req, res) => {
+const AllEmployees = async (req, res, next) => {
     try {
         const employees = await Employee.find();
         res.status(200).json(employees);
@@ -11,7 +11,7 @@ const AllEmployees = async (req, res) => {
 };
 
 // Obtener empleados por cargo
-const EmployeeByPosition = async (req, res) => {
+const EmployeeByPosition = async (req, res, next) => {
     try {
         const employees = await Employee.find({ position: req.params.position });
         employees.length ? res.status(200).json(employees) : res.status(404).json({ message: "No employees found" });
@@ -23,7 +23,7 @@ const EmployeeByPosition = async (req, res) => {
 
 
 
-const EmployeeById = async (req, res) => {
+const EmployeeById = async (req, res, next) => {
     try {
         const { id } = req.params;
         const employee = await Employee.findById(id);

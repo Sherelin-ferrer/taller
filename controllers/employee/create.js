@@ -1,6 +1,6 @@
 import Employee from "../../models/Employee.js";
 
-let createEmployee = async (req, res) => {
+let createEmployee = async (req, res, next) => {
     try {
         let employeeInfo = req.body;
         let newEmployee = await Employee.create(employeeInfo);
